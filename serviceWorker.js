@@ -9,11 +9,11 @@ self.addEventListener("install",(event)=>{
   )
 })
 // fetch event
-self.addEventListener("frtch",(event)=>{
+self.addEventListener("fetch",(event)=>{
   event.respondWith(
     caches.match(event.request).then((resp)=>{
       return resp || fetch(event.request).then((response)=>{
-        return caches.open("sample").then((caches)=>{
+        return caches.open("sample").then((cache)=>{
           cache.put(event.request,response.clone());
           return response;
         })
